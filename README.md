@@ -12,30 +12,91 @@ This project implements an AI-powered agent that automates expense tracking usin
 
 ## Setup Instructions
 
-### 1. Get Gemini API Key
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Create a new API key
-3. Add it to your `.env` file:
-```
-GEMINI_API_KEY=your_actual_api_key_here
-```
+### 🚀 1. Clone & Setup
 
-### 2. Setup Google Sheets API
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select an existing one
-3. Enable the Google Sheets API
-4. Create credentials (OAuth 2.0 Client ID) for a desktop application
-5. Download the credentials file and save it as `credentials.json` in this directory
-
-### 3. Install Dependencies
 ```bash
-pip install google-api-python-client google-auth google-generativeai python-dotenv google-auth-oauthlib google-auth-httplib2
+# Clone the repo
+git clone https://github.com/akashinferno/Expense-Tracking-Agent.git
+cd Expense-Tracking-Agent
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate   # On Windows use: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-### 4. Run the Application
+### 🔑 2. Setup Gemini API
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Click **Get API Key** and copy it
+3. Add it to your `.env` file:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+### ☁️ 3. Google Cloud Project & Sheets API Setup
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Click **Select Project** → **New Project** → name it `ExpenseTrackerAI`
+3. After it's created, select it
+4. Go to **APIs & Services** → **Library**:
+   - Enable **Google Sheets API**
+   
+### 🧑‍💻 4. Configure OAuth Consent Screen
+1. Go to **APIs & Services** → **OAuth consent screen**
+2. Set **User Type** = **External** (works fine for personal Gmail testing)
+3. Fill in **App name** and **Support email**
+4. Scroll to **Test Users** → **Add Users**
+5. Add your Gmail (example):
+   ```
+   urpersonalmail@gmail.com
+   ```
+6. Save
+
+### 🔐 5. Create OAuth Credentials
+1. Go to **APIs & Services** → **Credentials**
+2. Click **Create Credentials** → **OAuth client ID**
+3. Choose **Desktop App**
+4. Name it `ExpenseTrackerClient`
+5. Download JSON → rename it to:
+   ```
+   credentials.json
+   ```
+6. Place it in the same folder as `main.py`
+
+### 🔓 6. Authorize & Generate Token
+1. On first run, the script will open a browser for login
+2. Log in with your Gmail → approve permissions
+3. A `token.pickle` file will be saved → so you don't need to log in every time
+
+### 📊 7. Setup Google Sheet
+1. Open [Google Sheets](https://sheets.google.com)
+2. Create a new blank sheet
+3. Copy the Sheet ID from the URL:
+   ```bash
+   https://docs.google.com/spreadsheets/d/1A2B3C4D5E6F7G8H9I0J/edit#gid=0
+   👉 Sheet ID = 1A2B3C4D5E6F7G8H9I0J
+   ```
+4. Add it to your `.env` file:
+   ```env
+   SHEET_ID=1A2B3C4D5E6F7G8H9I0J
+   ```
+5. (Optional) Add headers manually in your Google Sheet:
+   ```
+   Date | Item | Amount | Category | TOTAL: | =SUM(C:C)
+   ```
+
+### ▶️ 8. Run the Expense Tracker
 ```bash
 python main.py
 ```
+
+Example input:
+```
+Lunch 200, sent 50 to friend
+```
+Data will be parsed by Gemini and stored in your Google Sheet.
 
 ## Usage Examples
 
