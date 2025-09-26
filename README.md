@@ -27,23 +27,16 @@ source venv/bin/activate   # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 🔑 2. Setup Gemini API
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Click **Get API Key** and copy it
-3. Add it to your `.env` file:
 
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-```
 
-### ☁️ 3. Google Cloud Project & Sheets API Setup
+### ☁️ 2. Google Cloud Project & Sheets API Setup
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Click **Select Project** → **New Project** → name it `ExpenseTrackerAI`
 3. After it's created, select it
 4. Go to **APIs & Services** → **Library**:
    - Enable **Google Sheets API**
    
-### 🧑‍💻 4. Configure OAuth Consent Screen
+### 🧑‍💻 3. Configure OAuth Consent Screen
 1. Go to **APIs & Services** → **OAuth consent screen**
 2. Set **User Type** = **External** (works fine for personal Gmail testing)
 3. Fill in **App name** and **Support email**
@@ -54,7 +47,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
    ```
 6. Save
 
-### 🔐 5. Create OAuth Credentials
+### 🔐 4. Create OAuth Credentials
 1. Go to **APIs & Services** → **Credentials**
 2. Click **Create Credentials** → **OAuth client ID**
 3. Choose **Desktop App**
@@ -64,6 +57,15 @@ GEMINI_API_KEY=your_gemini_api_key_here
    credentials.json
    ```
 6. Place it in the same folder as `main.py`
+
+### 🔑 5. Setup Gemini API
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Click **Get API Key** and copy it
+3. Add it to your `.env` file:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
 
 ### 🔓 6. Authorize & Generate Token
 1. On first run, the script will open a browser for login
