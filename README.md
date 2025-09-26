@@ -1,4 +1,4 @@
-# AI-Powered Google Sheets Expense Tracker
+# Google Sheets Expense Tracker Agent
 
 This project implements an AI-powered agent that automates expense tracking using natural language input. Users can type expenses in plain English, and the system automatically parses, categorizes, and logs them into Google Sheets.
 
